@@ -5,11 +5,12 @@ import { userdetails } from '../models/userdetails';
 import { userphotodetails } from '../models/userphotodetails';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-menubarlist',
+  templateUrl: './menubarlist.component.html',
+  styleUrls: ['./menubarlist.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MenubarlistComponent implements OnInit {
+
 
   constructor(private uservice: userservice, private route: Router) { }
 
@@ -23,11 +24,11 @@ export class MainPageComponent implements OnInit {
   user: userdetails[]=[];
   
 
-  ngOnInit(){
-    this.formdata=   JSON.parse(localStorage.getItem('form'));
-    this .un = this.formdata.username;
+ 
 
+  ngOnInit(): void {
     this.getUsers();
+
   }
   getUsers() {
     this.uservice.getAllUsers().subscribe((data: userdetails[]) => {
@@ -36,19 +37,10 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  // getDetails(id){
 
-  //   this.uservice.getEachUser(id).subscribe((datas: userdetails) => {
-  //     this.userdetailss = datas;
-  //     console.log(this.userdetailss);
-  //   });
+    
 
-    // this.uservice.getEachPhoto(id).subscribe((datapic: userphotodetails) => {
-    //   this.photodetails = datapic;
-    //   console.log(this.photodetails);
-    // });
 
-  // }
 
 
 }

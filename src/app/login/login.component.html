@@ -5,24 +5,24 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #form="ngForm"> <b>Login form</b>
+      <form [formGroup] = "loginForm"> <b>Login form</b>
         <div id="user-data1">
           <div class="form-group">
             <label for="username">Username</label><br>
-            <input type="text" id="uname" class="form-control" ngModel name="uname" required><br>
+            <input type="text" id="uname" class="form-control"  name="uname" required  formControlName="uname"><br>
           </div>
 
 
           <div class="form-group">
             <label for="password"> Password</label><br>
-            <input type="password" id="pass" class="form-control" ngModel name="pass" required>
+            <input type="password" id="pass" class="form-control"  name="pass" required formControlName="pass">
           </div>
 
 
         </div>
        
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid"
-          (click)="onSubmiter(form.value)">Submit</button>
+        <button class="btn btn-primary" type="submit" 
+          (click)="onSubmiter()">Submit</button>
       </form>
     </div>
   </div>

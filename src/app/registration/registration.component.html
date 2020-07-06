@@ -5,55 +5,55 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #forms="ngForm"> <b id="form" style="text-align: center;">Registration form</b>
+      <form [formGroup] = "signUpForm"> <b id="form">Registration form</b>
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" class="form-control" ngModel name="username" required #username="ngModel"><br>
-            <span class ="help-block" *ngIf="(!username.valid) && (username.touched)">Please enter a vaild username</span> 
+            <input type="text" id="username" class="form-control"  name="username" required formControlName="username"><br>
+            <span class ="help-block" *ngIf="(!signUpForm.get('username').valid) && (signUpForm.get('username').touched)">Please enter a vaild username</span> 
           </div>
           <div class="form-group">
             <label for="aboutyourself"> About yourself</label>
-            <input type="textarea" style="height: 200px; width: 750px;" id="aboutyourself" class="form-control" ngModel
-              name="aboutyourself" required #aboutyourself="ngModel">
-              <span class ="help-block" *ngIf="(!aboutyourself.valid) && (aboutyourself.touched)">Please enter a vaild text</span> 
+            <textarea type="textarea" style="height: 200px; width: 750px;" id="aboutyourself" class="form-control" 
+              name="aboutyourself" required formControlName="aboutyourself" ></textarea>
+              <span class ="help-block" *ngIf="(!signUpForm.get('aboutyourself').valid) && (signUpForm.get('aboutyourself').touched)">Please enter a vaild text</span> 
           </div>
 
           <div class="form-group">
             <label for="phonenumber"> Phone Number</label><br>
-            <input type="number" id="phonenumber" class="form-control" ngModel name="phonenumber" required #phonenumber="ngModel">
-            <span class ="help-block" *ngIf="(!phonenumber.valid) && (phonenumber.touched)">Please enter a vaild phonenumber</span> 
+            <input type="number" id="phonenumber" class="form-control"  name="phonenumber" required formControlName="phonenumber">
+            <span class ="help-block" *ngIf="(!signUpForm.get('phonenumber').valid) && (signUpForm.get('phonenumber').touched)">Please enter a vaild phonenumber</span> 
           </div>
 
           <div class="form-group">
             <label for="gitid"> Github Id</label><br>
-            <input type="text" id="gitid" class="form-control" ngModel name="gitid" required #gitid="ngModel">
-            <span class ="help-block" *ngIf="(!gitid.valid) && (gitid.touched)">Please enter a vaild gitid</span> 
+            <input type="text" id="gitid" class="form-control"  name="gitid" required formControlName="gitid" >
+            <!-- <span class ="help-block" *ngIf="(!gitid.valid) && (gitid.touched)">Please enter a vaild gitid</span>  -->
           </div>
 
           <div class="form-group">
             <label for="linkedid"> Linked Id</label><br>
-            <input type="text" id="linkedid" class="form-control" ngModel name="linkedid" required #linkedid="ngModel">
-            <span class ="help-block" *ngIf="(!linkedid.valid) && (linkedid.touched)">Please enter a vaild linkedid</span> 
+            <input type="text" id="linkedid" class="form-control"  name="linkedid" required formControlName="linkedid">
+            <!-- <span class ="help-block" *ngIf="(!linkedid.valid) && (linkedid.touched)">Please enter a vaild linkedid</span>  -->
           </div>
 
           <div class="form-group">
             <label for="password"> Password</label><br>
-            <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
-            <span class ="help-block" *ngIf="(!password.valid) && (password.touched)">Please enter a vaild password</span> 
+            <input type="password" id="password" class="form-control"  name="password" required formControlName="password">
+            <!-- <span class ="help-block" *ngIf="(!password.valid) && (password.touched)">Please enter a vaild password</span>  -->
           </div>
 
 
           <div class="form-group">
             <label for="email">Mail</label><br>
-            <input type="email" id="email" class="form-control" ngModel name="mail" required email #email = "ngModel">
-             <span class ="help-block" *ngIf="(!email.valid) && (email.touched)">Please enter a vaild email</span> 
+            <input type="email" id="email" class="form-control"  name="mail" required email formControlName="email">
+             <!-- <span class ="help-block" *ngIf="(!email.valid) && (email.touched)">Please enter a vaild email</span>  -->
         </div>
         </div>
 
         <div class="form-group">
             <label for="occupation">Occupation</label>
-            <select id="occupation" class="form-control" [ngModel]="defaultValue" name="occupation" required>
+            <select id="occupation" class="form-control" name="occupation" required formControlName="occupation">
               <option value="student">Student</option>
               <option value="employee">Employee</option>
             </select>
@@ -61,7 +61,7 @@
 
           <div class="form-group">
             <label for="state">States</label>
-            <select  (change)= "getSelectedOptionText($event)" id="state" class="form-control" [ngModel]="defaultValue" name="states" required>
+            <select  (change)= "getSelectedOptionText($event)" id="state" class="form-control"  name="states" required formControlName="states">
               <option selected>State</option>
               <option *ngFor="let s of state" class="dropdown-item">{{s}}</option>
             </select>
@@ -69,15 +69,15 @@
      
           <div class="form-group">
             <label for="state">Districts</label>
-            <select  (change)= "getSelectedOptionText($event)" id="state" class="form-control" [ngModel]="defaultValue" name="states" required>
+            <select  (change)= "getSelectedOptionText($event)"  class="form-control" name="states" required>
               <option selected>State</option>
               <option *ngFor="let u of selectedstate" class="dropdown-item">{{u}}</option>
             </select>
           </div>
 
 
-        <button class="btn btn-primary" type="submit" [disabled]="!forms.valid"
-          (click)="onSubmit(forms.value)">Submit</button>
+        <button class="btn btn-primary" type="submit" 
+          (click)="onSubmit()">Submit</button>
       </form>
     </div>
   </div>
